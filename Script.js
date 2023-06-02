@@ -7,11 +7,11 @@ var hrs,min,sec;
 function getInput()
 {
     var hrsInput=document.getElementById('hours');
-    hrs=parseInt(hrsInput.value);
+    hrs=parseInt(hrsInput.value)||0;
     var minInput=document.getElementById('minutes');
-    min=parseInt(minInput.value);
+    min=parseInt(minInput.value)||0;
     var secInput=document.getElementById('seconds');
-    sec=parseInt(secInput.value);
+    sec=parseInt(secInput.value)||0;
 
     var displayValue=document.getElementById('display');
 // To format 1 to 01..
@@ -75,6 +75,12 @@ function clockStarter()
     sec--;
     var displayValue=document.getElementById('display');
     displayValue.innerHTML=formatter(hrs)+" :: "+formatter(min)+" :: "+formatter(sec);
+    if(hrs==0&&min==0&&sec==0)
+    {
+        displayValue.innerHTML="Time up!";
+        running=false;
+        clearInterval(timer);
+    }
 }
  //clock reseter
 
@@ -95,10 +101,10 @@ var clearBtn=document.getElementById('clearBtn');
 clearBtn.addEventListener('click',function()
 {
     var hrsInput=document.getElementById('hours');
-    hrsInput.value=00;
+    hrsInput.value="";
     var minInput=document.getElementById('minutes');
-    minInput.value=00;
+    minInput.value="";
     var secInput=document.getElementById('seconds');
-    secInput.value=00;
+    secInput.value="";
 
 })
