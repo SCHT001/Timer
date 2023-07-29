@@ -1,11 +1,14 @@
 const enterBtn=document.getElementById('enterBtn');
 enterBtn.addEventListener('click',getInput);
 
-
+var running=false;
+var timer;
 var hrs,min,sec;
 
 function getInput()
 {
+    running=false;
+    clearInterval(timer);
     var hrsInput=document.getElementById('hours');
     hrs=parseInt(hrsInput.value)||0;
     var minInput=document.getElementById('minutes');
@@ -35,8 +38,8 @@ function formatter(x)
         return x;
     }
 }
-var running=false;
-var timer;
+
+
 const startBtn=document.getElementById('start');
 startBtn.addEventListener('click',start);
 function start()
@@ -59,7 +62,7 @@ function clockStarter()
         if(min==0 && hrs>0)
         {
             
-            min=59;
+            min=60;
             if(hrs>0)
             {
                 hrs--;
